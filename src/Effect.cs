@@ -10,6 +10,8 @@
 //
 ////////////////////////////////////////////////////////////////////////
 
+//#define USE_CLIPBOARD
+
 using GmicSharpPdn;
 using PaintDotNet;
 using PaintDotNet.AppModel;
@@ -18,6 +20,10 @@ using PaintDotNet.IndirectUI;
 using PaintDotNet.PropertySystem;
 using System.Drawing;
 using System.Globalization;
+
+#if USE_CLIPBOARD
+using PaintDotNet.Clipboard;
+#endif
 
 namespace GmicSharpPdnExample
 {
@@ -83,6 +89,32 @@ namespace GmicSharpPdnExample
                 {
                     gmic.AddInputImage(source);
                 }
+
+                // The following code demonstrates adding an image
+                // from the clipboard as a second G'MIC surface.
+#if USE_CLIPBOARD
+                IClipboardService clipboard = this.Services.GetService<IClipboardService>();
+
+                Surface clipboardSurface = clipboard.TryGetSurface();
+
+                try
+                {
+                    if (clipboardSurface != null)
+                    {
+                        using (PdnGmicBitmap clipboardBitmap = new PdnGmicBitmap(clipboardSurface, true))
+                        {
+                            // The PdnGmicBitmap takes ownership of the clipboard surface.
+                            clipboardSurface = null;
+
+                            gmic.AddInputImage(clipboardBitmap);
+                        }
+                    }
+                }
+                finally
+                {
+                    clipboardSurface?.Dispose();
+                }
+#endif
 
                 string command = string.Format(CultureInfo.InvariantCulture,
                                                "water[0] {0},{1},{2}",
