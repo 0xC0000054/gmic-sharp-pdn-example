@@ -131,7 +131,7 @@ namespace GmicSharpPdnExample
                 }
                 else if (!gmic.Canceled)
                 {
-                    Surface output = gmic.Output?.Surface;
+                    Surface output = gmic.OutputImages?[0]?.Surface;
 
                     if (output != null)
                     {
