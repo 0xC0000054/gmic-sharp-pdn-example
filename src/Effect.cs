@@ -18,8 +18,10 @@ using PaintDotNet.AppModel;
 using PaintDotNet.Effects;
 using PaintDotNet.IndirectUI;
 using PaintDotNet.PropertySystem;
+using System;
 using System.Drawing;
 using System.Globalization;
+using System.Reflection;
 
 #if USE_CLIPBOARD
 using PaintDotNet.Clipboard;
@@ -71,7 +73,13 @@ namespace GmicSharpPdnExample
             // Add help button to effect UI
             props[ControlInfoPropertyNames.WindowTitle].Value = "GmicSharpPdn Example - G'MIC Water";
             props[ControlInfoPropertyNames.WindowHelpContentType].Value = WindowHelpContentType.PlainText;
-            props[ControlInfoPropertyNames.WindowHelpContent].Value = "GmicSharpPdnExample v0.1\nCopyright © 2020 by Nicholas Hayes and David Tschumperlé \nAll rights reserved.";
+
+            Assembly assembly = typeof(GmicSharpPdnExamplePlugin).Assembly;
+
+            string fileVersion = assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
+            string copyright = assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright;
+
+            props[ControlInfoPropertyNames.WindowHelpContent].Value = $"GmicSharpPdnExample v{ fileVersion }\n{ copyright }\nAll rights reserved.";
 
             base.OnCustomizeConfigUIWindowProperties(props);
         }
