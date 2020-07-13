@@ -79,7 +79,7 @@ namespace GmicSharpPdnExample
             string fileVersion = assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version;
             string copyright = assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright;
 
-            props[ControlInfoPropertyNames.WindowHelpContent].Value = $"GmicSharpPdnExample v{ fileVersion }\n{ copyright }\nAll rights reserved.";
+            props[ControlInfoPropertyNames.WindowHelpContent].Value = $"GmicSharpPdnExample v{ fileVersion }\n\n{ copyright }\nAll rights reserved.";
 
             base.OnCustomizeConfigUIWindowProperties(props);
         }
