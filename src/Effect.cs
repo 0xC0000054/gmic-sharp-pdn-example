@@ -18,7 +18,6 @@ using PaintDotNet.AppModel;
 using PaintDotNet.Effects;
 using PaintDotNet.IndirectUI;
 using PaintDotNet.PropertySystem;
-using System;
 using System.Drawing;
 using System.Globalization;
 using System.Reflection;
