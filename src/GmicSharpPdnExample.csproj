@@ -9,10 +9,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GmicSharp">
-      <HintPath>..\..\GmicSharp\src\bin\Release\net472\GmicSharp.dll</HintPath>
+      <HintPath>..\..\GmicSharp\src\bin\Release\net5\GmicSharp.dll</HintPath>
     </Reference>
     <Reference Include="GmicSharpPdn">
-      <HintPath>..\..\GmicSharpPdn\src\bin\Release\GmicSharpPdn.dll</HintPath>
+      <HintPath>..\..\GmicSharpPdn\src\bin\Release\net5.0-windows\GmicSharpPdn.dll</HintPath>
     </Reference>
     <Reference Include="PaintDotNet.Base">
       <HintPath>..\..\..\..\..\..\..\Program Files\paint.net\PaintDotNet.Base.dll</HintPath>
